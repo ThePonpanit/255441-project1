@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Second Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="game.js" defer></script>
+    <script src="https://kit.fontawesome.com/155e6c8def.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="top-section">
+        <!-- Content for the top section -->
+    </div>
+
+    <div class="main-container">
+        <div class="left-section section">
+            <!-- Left section -->
+        </div>
+
+        <div class="center-section section">
+            <!-- Center section -->
+            <header>
+                <div class="container">
+                    <h1>Guess Number Game!</h1>
+                    <a href="index.html" class="fun-button" style="font-size: 14px;">Go to Home Page</a>
+                </div>
+            </header>
+
+            <section class="game-section">
+                <div class="container">
+                    <h2>Let's Play a Game!</h2>
+                    <p>Guess a number between 1 and 10. You have <span  style="color: #a2aaf3;">three</span> tries. Good luck!</p>
+                    <p id="newNumberText" class="new-number-text"></p>
+                    <div class="input-container">
+                        <input type="number" id="guessInput" min="1" max="10" class="guess-input">
+                        <button onclick="checkGuess(); clearNewNumberMessage()" class="guess-button" id="guessButton">Check</button>
+                    </div>
+                    <p id="result" class="result-text"></p>
+                </div>
+            </section>
+            
+            <footer>
+                <p>Thanks for visiting the Second Page! <a href="https://guthib.com/" target="_blank"><i class="fab fa-github" style="color: #df3079;"></i></p>
+                
+            </footer>
+        </div>
+        
+        <div class="right-section section">
+            <!-- Right section -->
+        </div>
+    </div>
+
+    <div class="bottom-section">
+        <!-- Content for the bottom section -->
+    </div>
+</body>
+</html>
