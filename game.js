@@ -62,3 +62,14 @@ function clearNewNumberMessage() {
     var newNumberText = document.getElementById("newNumberText");
     newNumberText.innerHTML = ""; // Clear the "A new number was generated." message
 }
+
+document.getElementById('changeText').addEventListener('mouseover', function() {
+    var element = this;
+    setTimeout(function() {
+        element.textContent = randomNumber;
+    }, 600); // In milliseconds 
+});
+
+document.getElementById('changeText').addEventListener('mouseout', function() {
+    this.textContent = "Number";
+});

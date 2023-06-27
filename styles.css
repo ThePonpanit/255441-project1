@@ -207,6 +207,18 @@ footer {
     transform: scaleX(1);
 }
 
+.custom-underline::after {
+    background-color: #a2aaf3; /* This sets the underline color for elements with the 'custom-underline' class */
+}
+
 .new-number-text {
     color: green;
+}
+
+.change-on-hover {
+    transition: font-size 0.6s ease-in-out;
+}
+
+.change-on-hover:hover {
+    font-size: 1.1em;
 }
