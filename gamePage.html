@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="gamePage.css">
+</head>
+
+<body>
+    <div class="top-section">
+        <div id="time" style="position:absolute; top:10px; left:10px; font-size:20px; color:white;"></div>
+        <div id="score" style="position:absolute; top:10px; right:10px; font-size:20px; color:white;"></div>
+    </div>
+
+    <div class="main-container">
+        <div class="left-section section">
+            <div id="instructions" style="font-size:20px; color:white; margin: 10px;">
+            </div>
+        </div>
+
+        <div class="center-section section">
+            <div class="container">
+                <h1 style="text-align: center; font-weight: bold; text-decoration: underline;">The Snake Game</h1>
+                <a href="index.html" class="fun-button">Back to Index Page</a>
+            </div>
+
+
+            <p>Instructions:</p>
+            <ul>
+                <li>Use arrow keys to control the snake.</li>
+                <li>Eat the red apple to grow.</li>
+                <li>Don't hit the walls or yourself!</li>
+            </ul>
+            <div id="game-over" style="display:none; font-size:40px; color:red; text-align:center;"></div>
+            <canvas id="snake-game" width="400" height="400"
+                style="display:block; background-color:black; margin:auto;"></canvas>
+
+            <button id="start-button" onclick="prepareGame()" style="display:block; margin:auto; margin-top: 20px;">Start Game</button>
+            <button id="retry-button" onclick="retryGame()" style="display:none; margin:auto; margin-top: 20px;">Retry</button>
+        </div>
+
+        <div class="right-section section">
+            <!-- Right section -->
+        </div>
+    </div>
+
+    <div class="bottom-section">
+        <!-- Content for the bottom section -->
+    </div>
+    <script src="snakeGame.js"></script>
+</body>
+
+</html>

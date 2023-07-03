@@ -1,0 +1,134 @@
+html,
+body {
+    overflow: hidden;
+    height: 100%;
+}
+
+body,
+.top-section,
+.bottom-section {
+    font-family: 'Söhne Mono', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+    background-color: #444;
+    color: #d9d9e3;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-section,
+.bottom-section {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.main-container {
+    display: flex;
+    width: 100%;
+}
+
+.left-section,
+.center-section,
+.right-section {
+    padding: 20px;
+}
+
+.center-section {
+    flex: 0.5;
+    background-color: #333;
+    border-radius: 10px;
+}
+
+.section {
+    flex: 1;
+    color: #d9d9e3;
+}
+
+#snake-game {
+    border: 1px solid #ddd;
+    background-color: #222;
+    margin: 0 auto;
+}
+
+#start-button,
+#retry-button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #007bff;
+    border: none;
+    color: #d9d9e3;
+    text-align: center;
+    border-radius: 6px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#start-button:hover,
+#retry-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.075);
+}
+
+#start-button:active,
+#retry-button:active {
+    background-color: #003973;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    transform: translateY(2px);
+}
+
+.instructions {
+    font-size: 20px;
+    color: #d9d9e3;
+    margin: 10px;
+}
+
+#game-over {
+    font-size: 40px;
+    color: red;
+    text-align: center;
+}
+
+.fun-button {
+    font-family: 'Söhne Mono', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+    background-color: #007bff;
+    border: none;
+    color: #d9d9e3;
+    padding: 12px 24px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 6px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+}
+
+.fun-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.075);
+}
+
+.fun-button:active {
+    background-color: #003973;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    transform: translateY(2px);
+}
+
+.fun-button a {
+    text-decoration: none;
+    color: #d9d9e3;
+}
+
+.container {
+    text-align: center;
+}
