@@ -2,7 +2,8 @@ const startButton = document.getElementById('start-button');
 const retryButton = document.getElementById('retry-button');
 const canvas = document.getElementById('snake-game');
 const ctx = canvas.getContext('2d');
-let tileSize = 20;
+
+const tileSize = 20;
 let direction = 'right';
 let snake;
 let apple;
@@ -13,15 +14,15 @@ let lastSpeedIncrease = 0;
 let gameInterval;
 
 startButton.addEventListener('click', prepareGame);
-retryButton.addEventListener('click', function () { location.reload(); });
+retryButton.addEventListener('click', restartGame);
 
 function prepareGame() {
     startButton.style.display = 'none';
+    retryButton.style.display = 'none';
     canvas.style.display = 'block';
 
     let countdown = 3;
-
-    var countdownInterval = setInterval(function() {
+    let countdownTimer = setInterval(() => {
         clearCanvas();
         countdown--;
 
@@ -31,26 +32,22 @@ function prepareGame() {
         ctx.fillText(countdown, canvas.width / 2, canvas.height / 2);
 
         if (countdown <= 0) {
-            clearInterval(countdownInterval);
+            clearInterval(countdownTimer);
             startGame();
         }
     }, 1000);
 }
 
 function startGame() {
-    snake = [ { x: 5, y: 5 }, { x: 4, y: 5 }, { x: 3, y: 5 } ];
+    snake = [{ x: 5, y: 5 }, { x: 4, y: 5 }, { x: 3, y: 5 }];
     apple = { x: 10, y: 10 };
     score = 0;
     startTime = Date.now();
 
     ctx.font = '20px Arial';
-
-    document.addEventListener('keydown', handleKeydown);
-
     document.addEventListener('keydown', changeDirection);
 
     gameInterval = setInterval(gameLoop, timeInterval);
-
     gameLoop();
 }
 
@@ -66,7 +63,7 @@ function oppositeDirection() {
 }
 
 function gameLoop() {
-    let head = {...snake[0]};
+    let head = { ...snake[0] };
 
     moveHead(head);
 
@@ -83,7 +80,6 @@ function gameLoop() {
     }
 
     snake.unshift(head); // add new head to snake
-
     clearCanvas();
 
     // Draw the snake
@@ -100,14 +96,12 @@ function gameLoop() {
     // Display score and time
     let elapsedTime = Math.floor((Date.now() - startTime) / 1000);
     ctx.fillStyle = 'white';
-    ctx.fillText('Time: ' + elapsedTime + 's', 50, 20);
-    ctx.fillText('Score: ' + score, canvas.width - 105, 20);
+    ctx.fillText(`Time: ${elapsedTime}s`, 50, 20);
+    ctx.fillText(`Score: ${score}`, canvas.width - 105, 20);
 
     // Speed up the game every 10 seconds
     speedUpGame(elapsedTime);
 }
-
-
 
 function moveHead(head) {
     switch (direction) {
@@ -124,16 +118,6 @@ function moveHead(head) {
             head.y = (head.y + 1) % (canvas.height / tileSize);
             break;
     }
-}
-
-function handleAppleCollision(head) {
-    if (head.x === apple.x && head.y === apple.y) {
-        score++;
-        placeApple();
-    } else {
-        snake.pop();
-    }
-    snake.unshift(head);
 }
 
 function placeApple() {
@@ -156,15 +140,17 @@ function speedUpGame(elapsedTime) {
 }
 
 function clearCanvas() {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function gameOver() {
     clearInterval(gameInterval);
 
+    // Remove the keydown event listener when game is over
+    document.removeEventListener('keydown', changeDirection);
+
     ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, canvas.width / 2, canvas.height);
 
     ctx.fillStyle = 'red';
     ctx.textAlign = 'center';
@@ -172,40 +158,24 @@ function gameOver() {
     ctx.fillText('Game Over', canvas.width / 2, canvas.height / 2 - 20);
 
     ctx.fillStyle = 'white';
-    ctx.fillText('Score: ' + score, canvas.width / 2, canvas.height / 2 + 20);
+    ctx.fillText(`Score: ${score}`, canvas.width / 2, canvas.height / 2 + 20);
 
-    document.getElementById('retry-button').style.display = 'block';
-    document.getElementById('retry-button').addEventListener('click', restartGame);
+    retryButton.style.display = 'none';
 
-    // Listen for any arrow key press
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-            restartGame();
-        }
-    });
+    setTimeout(() => {
+        restartGame();
+    }, 3000);
 }
 
 function restartGame() {
-    // Reset game state
-    location.reload();
+    clearInterval(gameInterval);
+    direction = 'right';
+    lastSpeedIncrease = 0;
+    timeInterval = 130;
+    retryButton.style.display = 'none';
+    startGame();
 }
-
-
 
 function randomPosition() {
-    return Math.floor(Math.random() * canvas.width / tileSize);
+    return Math.floor(Math.random() * (canvas.width / tileSize));
 }
-
-function isOutOfBounds(position) {
-    return position.x < 0 || position.y < 0 || position.x >= canvas.width / tileSize || position.y >= canvas.height / tileSize;
-}
-
-function handleKeydown(event) {
-    let newDirection = direction;
-    if (event.key === 'ArrowUp' && direction !== 'down') newDirection = 'up';
-    if (event.key === 'ArrowDown' && direction !== 'up') newDirection = 'down';
-    if (event.key === 'ArrowLeft' && direction !== 'right') newDirection = 'left';
-    if (event.key === 'ArrowRight' && direction !== 'left') newDirection = 'right';
-    direction = newDirection;
-}
-
