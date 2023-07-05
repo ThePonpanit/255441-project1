@@ -4,6 +4,11 @@ body, .top-section, .bottom-section {
     color: #d9d9e3;
 }
 
+#animated-image {
+    width: 350px;
+    height: auto;
+}
+
 body {
     margin: 0;
 }
